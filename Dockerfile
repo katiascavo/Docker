@@ -3,16 +3,22 @@ FROM ubuntu:latest
 # Initial update
 RUN apt-get update
 
-#
-# Redis Dockerfile 1
-#
-# https://github.com/dockerfile/redis
-#
+#Java 8 install
+RUN apt-get purge openjdk*
+RUN add-apt-repository ppa:webupd8team/java
+RUN apt-get update
+RUN apt-get install oracle-java8-installer
+
 # Install Redis-Server
-RUN apt-get install -y redis-server
+RUN apt-get install redis-server
+
+#Install Git
+RUN apt-get install git
+
 
 ## install maven
 RUN apt-get update && apt-get --no-install-recommends install maven -y
+#oppure RUN apt-get install maven
 
 
 #Get the source repository
