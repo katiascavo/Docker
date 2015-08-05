@@ -1,13 +1,14 @@
-FROM ubuntu:latest
+FROM ubuntu:14.04
 
 # Initial update
 RUN apt-get update
 
 #Java 8 install
-RUN apt-get purge openjdk*
+#RUN apt-get purge openjdk*
 RUN add-apt-repository ppa:webupd8team/java
 RUN apt-get update
 RUN apt-get install oracle-java8-installer
+RUN apt-get install oracle-java8-set-default
 
 # Install Redis-Server
 RUN apt-get install redis-server
