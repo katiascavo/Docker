@@ -33,4 +33,4 @@ RUN echo '#!/bin/bash' >> /start-server
 RUN echo 'cd /URL-Shortener' >> /start-server
 RUN echo 'mvn package' >> /start-server
 RUN echo 'java -jar target/urlshortener-0.0.1-SNAPSHOT.jar' >> /start-server
-RUN chmod 755 /start-server
+RUN chmod 777 /start-server
