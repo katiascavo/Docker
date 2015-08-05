@@ -3,10 +3,6 @@ FROM ubuntu:latest
 # Initial update
 RUN apt-get update
 
-#Install JDK 8
-RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
-RUN apt-get install oracle-java8-installer -y
-
 #
 # Redis Dockerfile 1
 #
