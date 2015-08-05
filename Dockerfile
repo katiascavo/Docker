@@ -1,4 +1,4 @@
-FROM java:8jdk
+FROM ubuntu:latest
 
 # Initial update
 RUN apt-get update
