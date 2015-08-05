@@ -4,7 +4,7 @@ FROM ubuntu:14.04
 RUN apt-get update
 
 #common files
-#RUN apt-get install software-properties-common python-software-properties
+RUN apt-get install software-properties-common
 
 #Java 8 install
 #RUN apt-get purge openjdk*
