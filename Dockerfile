@@ -27,6 +27,8 @@ RUN apt-get install -y redis-server
 #Install Git
 RUN apt-get install -y git
 
+EXPOSE 8080
+
 #Get the source repository
 RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
 
