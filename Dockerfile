@@ -10,11 +10,6 @@ RUN apt-get update
 #
 
 
-#Install nano - file editor
-RUN apt-get install nano
-
-#Install maven
-RUN apt-get install maven -y
 
 #Get the source repository
 RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
