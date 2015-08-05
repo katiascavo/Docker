@@ -3,6 +3,9 @@ FROM ubuntu:14.04
 # Initial update
 RUN apt-get update
 
+#common files
+RUN apt-get install software-properties-common python-software-properties
+
 #Java 8 install
 #RUN apt-get purge openjdk*
 RUN add-apt-repository ppa:webupd8team/java
