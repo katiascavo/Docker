@@ -30,11 +30,6 @@ RUN apt-get install -y git
 #Get the source repository
 RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
 
-# Prepare by downloading dependencies
-ADD pom.xml /code/pom.xml
-RUN ["mvn", "dependency:resolve"]
-RUN ["mvn", "verify"]
-
 #create the start server file and make it executable
 RUN echo '#!/bin/bash' >> /server
 RUN echo 'cd /URL-Shortener' >> /server
