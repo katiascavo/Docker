@@ -6,12 +6,20 @@ RUN apt-get update
 #common files
 RUN apt-get install -y software-properties-common
 
-#Java 8 install
-#RUN apt-get purge openjdk*
-RUN add-apt-repository ppa:webupd8team/java
+#Get repositories for java8
+RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
+RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 RUN apt-get update
-#RUN apt-get install -y oracle-java8-installer
-RUN "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+
+#Install JDK 8
+RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+RUN apt-get install oracle-java8-installer -y
+
+# Install maven
+RUN apt-get update
+RUN apt-get install -y maven
+
 
 # Install Redis-Server
 RUN apt-get install -y redis-server
@@ -19,18 +27,17 @@ RUN apt-get install -y redis-server
 #Install Git
 RUN apt-get install -y git
 
-
-## install maven
-RUN apt-get update && apt-get --no-install-recommends install maven -y
-#oppure RUN apt-get install maven
-
-
 #Get the source repository
 RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
 
+# Prepare by downloading dependencies
+ADD pom.xml /code/pom.xml
+RUN ["mvn", "dependency:resolve"]
+RUN ["mvn", "verify"]
+
 #create the start server file and make it executable
-RUN echo '#!/bin/bash' >> /start-server
-RUN echo 'cd /URL-Shortener' >> /start-server
-RUN echo 'mvn package' >> /start-server
-RUN echo 'java -jar target/urlshortener-0.0.1-SNAPSHOT.jar' >> /start-server
-RUN chmod 777 /start-server
+RUN echo '#!/bin/bash' >> /server
+RUN echo 'cd /URL-Shortener' >> /server
+RUN echo 'mvn install' >> /server
+RUN echo 'java -jar target/urlshortener-0.0.1-SNAPSHOT.jar' >> /server
+RUN chmod 777 /server
