@@ -10,14 +10,14 @@ RUN apt-get install -y software-properties-common
 #RUN apt-get purge openjdk*
 RUN add-apt-repository ppa:webupd8team/java
 RUN apt-get update
-RUN apt-get install oracle-java8-installer
-RUN apt-get install oracle-java8-set-default
+RUN apt-get install -y oracle-java8-installer
+RUN apt-get install -y oracle-java8-set-default
 
 # Install Redis-Server
-RUN apt-get install redis-server
+RUN apt-get install -y redis-server
 
 #Install Git
-RUN apt-get install git
+RUN apt-get install -y git
 
 
 ## install maven
