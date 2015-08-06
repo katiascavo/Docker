@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+# Pull base image.
+FROM dockerfile/ubuntu
 
 #ports
 EXPOSE 8080
