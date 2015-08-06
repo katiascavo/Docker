@@ -27,10 +27,18 @@ RUN apt-get install -y redis-server
 #Install Git
 RUN apt-get install -y git
 
-EXPOSE 8080
+EXPOSE 8080 6379
 
 #Get the source repository
 RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
+
+#Compile JAR
+ADD URL-Shortener/URLShortener/pom.xml /code/pom.xml 
+ADD URL-Shortener/URLShortener/src /code/src 
+WORKDIR /code
+RUN ["mvn", "dependency:resolve"] 
+RUN ["mvn", "verify"]
+RUN ["mvn", "install"]
 
 #create the start server file and make it executable
 RUN echo '#!/bin/bash' >> /server
