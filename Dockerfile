@@ -25,12 +25,8 @@ RUN apt-get install -y redis-server
 #Install Git
 RUN apt-get install git -y 
 
-#Install Maven
-RUN curl -fsSL http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz | tar xzf - -C /usr/share \
-  && mv /usr/share/apache-maven-3.3.3 /usr/share/maven \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
-
-ENV MAVEN_HOME /usr/share/maven
+## install maven
+RUN apt-get update && apt-get --no-install-recommends install maven -y
 
 #Get the source repository
 RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
