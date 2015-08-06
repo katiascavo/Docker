@@ -7,19 +7,19 @@ RUN apt-get update
 RUN apt-get install -y software-properties-common
 
 #Java 8 install
-#RUN apt-get purge openjdk*
-RUN add-apt-repository ppa:webupd8team/java
-RUN apt-get update
-#RUN apt-get install -y oracle-java8-installer
-RUN "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+#non messo RUN apt-get purge openjdk*
+#RUN add-apt-repository ppa:webupd8team/java
+#RUN apt-get update
+#non messo RUN apt-get install -y oracle-java8-installer
+#RUN "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
 
 # Install maven
-RUN apt-get update
-RUN apt-get install -y maven
+#RUN apt-get update
+#RUN apt-get install -y maven
 
 
 # Install Redis-Server
-RUN apt-get install -y redis-server
+#RUN apt-get install -y redis-server
 
 #Install Git
 RUN apt-get install -y git
