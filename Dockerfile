@@ -1,13 +1,10 @@
 # Pull base image.
-FROM ubuntu:14.04
+FROM redis:latest
 
 #ports
 EXPOSE 8080
 # Expose ports.
 EXPOSE 6379
-
-#common files
-RUN apt-get install -y software-properties-common
 
 #Get repositories for java8
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
@@ -19,21 +16,18 @@ RUN apt-get update
 RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
 RUN apt-get install oracle-java8-installer -y
 
-# Install Redis-Server
-RUN apt-get install -y redis-server
-
 #Install Git
 RUN apt-get install git -y 
 
-## install maven
-RUN apt-get update && apt-get --no-install-recommends install maven -y
+#Install maven
+RUN apt-get install maven -y
 
 #Get the source repository
 RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
 
 #create the start server file and make it executable
-RUN echo '#!/bin/bash' >> /server
-RUN echo 'cd /URL-Shortener/URLShortener' >> /server
+RUN echo '#!/bin/bash' >> /start-server
+RUN echo 'cd /URL-Shortener/URLShortener' >> /start-server
 RUN echo 'mvn package' >> /server
-RUN echo 'java -jar target/urlshortener-0.0.1-SNAPSHOT.jar' >> /server
-RUN chmod 777 /server
+RUN echo 'java -jar target/urlshortener-0.0.1-SNAPSHOT.jar' >> /start-server
+RUN chmod 777 /start-server
