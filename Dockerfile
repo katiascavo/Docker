@@ -28,6 +28,6 @@ RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
 #create the start server file and make it executable
 RUN echo '#!/bin/bash' >> /start-server
 RUN echo 'cd /URL-Shortener/URLShortener' >> /start-server
-RUN echo 'mvn package' >> /server
+RUN echo 'mvn package' >> /start-server
 RUN echo 'java -jar target/urlshortener-0.0.1-SNAPSHOT.jar' >> /start-server
 RUN chmod 777 /start-server
