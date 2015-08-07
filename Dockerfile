@@ -1,5 +1,5 @@
 # Pull base image.
-FROM redis:latest
+FROM ubuntu:latest
 
 #ports
 EXPOSE 8080
