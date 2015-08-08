@@ -3,8 +3,18 @@ FROM ubuntu:latest
 
 #ports
 EXPOSE 8080
-# Expose ports.
-EXPOSE 6379
+
+#common files
+RUN apt-get install -y software-properties-common
+
+# Update the repository and install Redis Server
+RUN         apt-get update && apt-get install -y redis-server
+
+# Expose Redis port 6379
+EXPOSE      6379
+
+# Run Redis Server
+ENTRYPOINT  ["/usr/bin/redis-server"]
 
 #Get repositories for java8
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
