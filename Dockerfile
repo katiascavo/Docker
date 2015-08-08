@@ -4,7 +4,7 @@ FROM ubuntu:latest
 #ports
 EXPOSE 8080
 
-#common files
+#For add-apt-repository command
 RUN apt-get install -y software-properties-common
 
 # Update the repository and install Redis Server
@@ -36,8 +36,8 @@ RUN apt-get install maven -y
 RUN git clone -b test1 https://github.com/GruppoPBDMNG-1/URL-Shortener
 
 #create the start server file and make it executable
-RUN echo '#!/bin/bash' >> /start-server
-RUN echo 'cd /URL-Shortener/URLShortener' >> /start-server
-RUN echo 'mvn package' >> /start-server
-RUN echo 'java -jar target/urlshortener-0.0.1-SNAPSHOT.jar' >> /start-server
-RUN chmod 777 /start-server
+RUN echo '#!/bin/bash' >> /start
+RUN echo 'cd /URL-Shortener/URLShortener' >> /start
+RUN echo 'mvn package' >> /start
+RUN echo 'java -jar target/urlshortener-0.0.1-SNAPSHOT.jar' >> /start
+RUN chmod 777 /start
