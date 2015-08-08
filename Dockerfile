@@ -33,7 +33,7 @@ RUN apt-get install git -y
 RUN apt-get install maven -y
 
 #Get the source repository
-RUN git clone https://github.com/GruppoPBDMNG-1/URL-Shortener
+RUN git clone -b test1 https://github.com/GruppoPBDMNG-1/URL-Shortener
 
 #create the start server file and make it executable
 RUN echo '#!/bin/bash' >> /start-server
